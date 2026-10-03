@@ -40,11 +40,21 @@ const app = document.querySelector("#app");
 
 app.innerHTML = `
   <div class="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(189,196,212,0.2),_transparent_28%),linear-gradient(135deg,_#0f1a2b_0%,_#1c2e4a_50%,_#52677d_100%)] text-slate-50">
-    <header class="px-5 pt-6 md:px-10">
-      <nav class="nav-shell mx-auto flex w-full max-w-7xl flex-col gap-5 rounded-[2rem] px-5 py-4 md:flex-row md:items-center md:justify-between">
+    <header class="site-header px-5 md:px-10">
+      <nav class="nav-shell mx-auto w-full max-w-7xl rounded-[2rem] px-5 py-4">
         <a class="nav-brand flex h-20 w-20 items-center justify-center rounded-full p-2 transition duration-300 hover:-translate-y-0.5" href="#inicio" aria-label="Inicio AE y NM">
           <img class="w-full max-w-[62px]" src="${mediaUrl("LOGO/LOGO_N&M.png")}" alt="Logo de AE y NM" />
         </a>
+
+        <div class="nav-countdown" role="timer" aria-live="off" aria-label="Tiempo restante hasta el 21 de diciembre de 2026, hora de Ecuador">
+          <time class="countdown-date" datetime="2026-12-21T00:00:00-05:00">21 · DICIEMBRE · 2026</time>
+          <div class="countdown-values">
+            <span class="countdown-unit"><strong id="countdown-days">—</strong><span id="countdown-days-label">días</span></span>
+            <span class="countdown-divider" aria-hidden="true">:</span>
+            <span class="countdown-unit"><strong id="countdown-hours">—</strong><span id="countdown-hours-label">horas</span></span>
+          </div>
+          <span id="countdown-caption" class="countdown-caption">Para nuestro día</span>
+        </div>
 
         <div class="nav-links-panel flex flex-col gap-3 md:flex-row md:items-center">
           <a class="nav-link rounded-full px-5 py-3 text-center text-sm font-semibold tracking-[0.2em]" href="#nosotros">NOSOTROS</a>
@@ -154,6 +164,40 @@ app.innerHTML = `
     </main>
   </div>
 `;
+
+const countdownTarget = Date.parse("2026-12-21T00:00:00-05:00");
+const countdownDays = document.querySelector("#countdown-days");
+const countdownHours = document.querySelector("#countdown-hours");
+
+const updateCountdown = () => {
+  const remainingHours = Math.floor(Math.max(0, countdownTarget - Date.now()) / 3_600_000);
+  const days = Math.floor(remainingHours / 24);
+  const hours = remainingHours % 24;
+
+  countdownDays.textContent = String(days).padStart(2, "0");
+  countdownHours.textContent = String(hours).padStart(2, "0");
+  document.querySelector("#countdown-days-label").textContent = days === 1 ? "día" : "días";
+  document.querySelector("#countdown-hours-label").textContent = hours === 1 ? "hora" : "horas";
+  document.querySelector("#countdown-caption").textContent = Date.now() >= countdownTarget
+    ? "Llegó nuestro día ♡"
+    : "Para nuestro día";
+};
+
+updateCountdown();
+const countdownTimer = window.setInterval(updateCountdown, 1000);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) updateCountdown();
+});
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => window.clearInterval(countdownTimer));
+}
+
+const siteHeader = document.querySelector(".site-header");
+const updateNavOffset = () => {
+  document.documentElement.style.setProperty("--nav-offset", `${siteHeader.offsetHeight + 16}px`);
+};
+updateNavOffset();
+new ResizeObserver(updateNavOffset).observe(siteHeader);
 
 const memoryStage = document.querySelector("#memory-stage");
 const memoryFlower = document.querySelector("#memory-flower");

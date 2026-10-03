@@ -11,6 +11,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset, 160px);
 }
 
 body {
@@ -22,12 +23,25 @@ button {
   font: inherit;
 }
 
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  padding-bottom: 0.75rem;
+  background: linear-gradient(180deg, rgba(15, 26, 43, 0.96), rgba(15, 26, 43, 0));
+}
+
 .nav-shell {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    rgba(15, 26, 43, 0.38);
+    rgba(15, 26, 43, 0.9);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 18px 45px rgba(9, 17, 30, 0.24);
@@ -46,6 +60,7 @@ button {
 
 .nav-brand {
   position: relative;
+  justify-self: start;
   border: 1px solid rgba(15, 26, 43, 0.08);
   background:
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.98), rgba(241, 244, 248, 0.92)),
@@ -57,11 +72,61 @@ button {
 
 .nav-links-panel {
   position: relative;
+  justify-self: end;
   padding: 0.45rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   background: rgba(7, 14, 24, 0.28);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.nav-countdown {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #d1cfc9;
+}
+
+.countdown-date {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #bdc4d4;
+}
+
+.countdown-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.countdown-unit {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.countdown-unit strong {
+  font-size: 1.65rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #fff;
+}
+
+.countdown-divider {
+  color: rgba(189, 196, 212, 0.5);
+}
+
+.countdown-caption {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.6rem;
+  color: #bdc4d4;
 }
 
 .nav-link {
@@ -301,6 +366,34 @@ button {
   min-height: 0;
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-shell {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .nav-brand {
+    grid-row: 1;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .nav-links-panel {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .nav-countdown {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .countdown-caption {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .memory-section {
     padding: 1rem;
@@ -374,20 +467,38 @@ button {
   }
 
   .nav-shell {
-    flex-direction: row;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem;
     border-radius: 1.5rem;
   }
 
+  .nav-countdown {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .countdown-caption {
+    display: none;
+  }
+
+  .countdown-unit strong {
+    font-size: 1.35rem;
+  }
+
   .nav-brand {
+    grid-row: 1;
     width: 3.5rem;
     height: 3.5rem;
     flex-shrink: 0;
   }
 
   .nav-links-panel {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: row;
     gap: 0.25rem;
