@@ -66,7 +66,7 @@ app.innerHTML = `
             </p>
           </div>
 
-          <div class="memory-column min-w-0 space-y-4">
+          <div class="memory-column min-w-0">
             <button
               id="memory-stage"
               type="button"
@@ -89,6 +89,7 @@ app.innerHTML = `
                 <span class="film-strip-holes film-strip-holes--left" aria-hidden="true"></span>
                 <span class="film-strip-holes film-strip-holes--right" aria-hidden="true"></span>
                 <span class="film-strip-glow" aria-hidden="true"></span>
+                <span class="film-viewport">
                 <span id="film-track" class="film-track flex h-full flex-col will-change-transform">
                   ${memories
                     .map(
@@ -109,6 +110,7 @@ app.innerHTML = `
                       `,
                     )
                     .join("")}
+                </span>
                 </span>
               </span>
             </button>
