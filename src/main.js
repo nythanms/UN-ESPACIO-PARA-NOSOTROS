@@ -46,8 +46,8 @@ app.innerHTML = `
           <img class="w-full max-w-[62px]" src="${mediaUrl("LOGO/LOGO_N&M.png")}" alt="Logo de AE y NM" />
         </a>
 
-        <div class="nav-countdown" role="timer" aria-live="off" aria-label="Tiempo restante hasta el 21 de diciembre de 2026, hora de Ecuador">
-          <time class="countdown-date" datetime="2026-12-21T00:00:00-05:00">21 · DICIEMBRE · 2026</time>
+        <div class="nav-countdown" role="timer" aria-live="off" aria-label="Tiempo restante hasta el 22 de diciembre de 2026, hora de Ecuador">
+          <time class="countdown-date" datetime="2026-12-22T00:00:00-05:00">22 · DICIEMBRE · 2026</time>
           <div class="countdown-values">
             <span class="countdown-unit"><strong id="countdown-days">—</strong><span id="countdown-days-label">días</span></span>
             <span class="countdown-divider" aria-hidden="true">:</span>
@@ -165,7 +165,7 @@ app.innerHTML = `
   </div>
 `;
 
-const countdownTarget = Date.parse("2026-12-21T00:00:00-05:00");
+const countdownTarget = Date.parse("2026-12-22T00:00:00-05:00");
 const countdownDays = document.querySelector("#countdown-days");
 const countdownHours = document.querySelector("#countdown-hours");
 

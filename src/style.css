@@ -89,7 +89,7 @@ button {
 
 .countdown-date {
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.69rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   color: #bdc4d4;
@@ -107,11 +107,11 @@ button {
   display: flex;
   align-items: baseline;
   gap: 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.805rem;
 }
 
 .countdown-unit strong {
-  font-size: 1.65rem;
+  font-size: 1.8975rem;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
@@ -119,13 +119,14 @@ button {
 }
 
 .countdown-divider {
+  font-size: 1.15rem;
   color: rgba(189, 196, 212, 0.5);
 }
 
 .countdown-caption {
   display: block;
   margin-top: 0.3rem;
-  font-size: 0.6rem;
+  font-size: 0.69rem;
   color: #bdc4d4;
 }
 
@@ -486,7 +487,7 @@ button {
   }
 
   .countdown-unit strong {
-    font-size: 1.35rem;
+    font-size: 1.5525rem;
   }
 
   .nav-brand {
