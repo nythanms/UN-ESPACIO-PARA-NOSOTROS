@@ -40,11 +40,11 @@ if (memoryStage) {
         try {
             await loveAudio.play();
             if (musicNote) {
-                musicNote.textContent = "La musica ya esta sonando de fondo para acompanar los recuerdos.";
+                musicNote.textContent = "La música ya esta sonando de fondo para acompañar los recuerdos.";
             }
         } catch (error) {
             if (musicNote) {
-                musicNote.textContent = "La animacion ya funciona. La musica empezara en cuanto agreguemos un archivo valido en ASSETS/MUSIC.";
+                musicNote.textContent = "La animación ya funciona. La música empezará en cuanto agreguemos un archivo válido en ASSETS/MUSIC.";
             }
         }
     };

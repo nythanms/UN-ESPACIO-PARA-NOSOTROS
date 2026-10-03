@@ -5,64 +5,36 @@ const baseUrl = import.meta.env.BASE_URL;
 const mediaUrl = (path) => `${baseUrl}media/${path}`;
 const spotifyPlaylistUri = "spotify:playlist:6hgUjtnyl1gG2P452b47tp";
 
-const memories = [
-  {
-    src: mediaUrl("IMAGES/1.webp"),
-    alt: "Un recuerdo especial de nuestra historia",
-  },
-  {
-    src: mediaUrl("IMAGES/image00001.jpg"),
-    alt: "Nosotros juntos en un recuerdo especial",
-  },
-  {
-    src: mediaUrl("IMAGES/image00003.jpg"),
-    alt: "Un momento bonito compartido",
-  },
-  {
-    src: mediaUrl("IMAGES/image00004.jpg"),
-    alt: "Otra foto especial de nosotros",
-  },
-  {
-    src: mediaUrl("IMAGES/image00005.jpg"),
-    alt: "Una foto de nuestra historia",
-  },
-  {
-    src: mediaUrl("IMAGES/image00006.jpg"),
-    alt: "Un recuerdo lleno de carino",
-  },
-  {
-    src: mediaUrl("IMAGES/image00007.jpg"),
-    alt: "Un instante feliz de nuestra relacion",
-  },
-  {
-    src: mediaUrl("IMAGES/image00008.jpg"),
-    alt: "Una foto hermosa de los dos",
-  },
-  {
-    src: mediaUrl("IMAGES/image00010.jpg"),
-    alt: "Otro momento bonito de los dos",
-  },
-  {
-    src: mediaUrl("IMAGES/image00011.jpg"),
-    alt: "Un recuerdo tierno de nuestra historia",
-  },
-  {
-    src: mediaUrl("IMAGES/image00012.jpg"),
-    alt: "Una escena especial de nosotros",
-  },
-  {
-    src: mediaUrl("IMAGES/image00013.jpg"),
-    alt: "Un momento bonito que compartimos",
-  },
-  {
-    src: mediaUrl("IMAGES/image00014.jpg"),
-    alt: "Una foto romantica de nosotros",
-  },
-  {
-    src: mediaUrl("IMAGES/image00015.jpg"),
-    alt: "Otro recuerdo romantico de nuestra historia",
-  },
+const memoryFiles = [
+  "1.webp",
+  "2.jpeg",
+  "3.jpeg",
+  "4.jpeg",
+  "5.jpeg",
+  "6.jpeg",
+  "7.jpg",
+  "8.jpg",
+  "9.jpg",
+  "10.jpg",
+  "11.jpg",
+  "12.jpg",
+  "13.jpg",
+  "14.jpg",
+  "15.jpg",
+  "16.jpg",
+  "17.jpg",
+  "18.jpg",
+  "19.jpg",
+  "20.jpg",
+  "21.jpg",
+  "22.jpg",
+  "23.jpg",
 ];
+
+const memories = memoryFiles.map((filename, index) => ({
+  src: mediaUrl(`IMAGES/${filename}`),
+  alt: `Recuerdo ${index + 1} de nuestra historia`,
+}));
 
 const app = document.querySelector("#app");
 
@@ -82,25 +54,25 @@ app.innerHTML = `
     </header>
 
     <main id="inicio" class="px-5 pb-10 pt-8 md:px-10 md:pt-12">
-      <section class="mx-auto w-full max-w-7xl rounded-[2.2rem] border border-white/12 bg-[linear-gradient(145deg,rgba(28,46,74,0.56),rgba(15,26,43,0.72))] p-6 shadow-[0_18px_45px_rgba(9,17,30,0.24)] md:p-10">
-        <p class="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-[#bdc4d4]">Una historia hecha pagina</p>
-        <div class="grid gap-10 xl:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] xl:items-start">
+      <section class="memory-section mx-auto w-full max-w-7xl rounded-[2.2rem] border border-white/12 bg-[linear-gradient(145deg,rgba(28,46,74,0.56),rgba(15,26,43,0.72))] p-6 shadow-[0_18px_45px_rgba(9,17,30,0.24)] md:p-10">
+        <p class="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-[#bdc4d4]">Una historia hecha página</p>
+        <div class="memory-layout grid gap-10 xl:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] xl:items-start">
           <div class="space-y-5">
             <h1 class="max-w-[10ch] font-['Cormorant_Garamond'] text-6xl leading-[0.92] font-semibold md:text-8xl">
               Nuestro espacio para recordar.
             </h1>
             <p class="max-w-2xl text-base leading-8 text-slate-100/85 md:text-lg">
-              Una galeria de recuerdos pequenos que huelen a nosotros.
+              Una galeria de recuerdos pequeños que huelen a nosotros.
             </p>
           </div>
 
-          <div class="space-y-4">
+          <div class="memory-column min-w-0 space-y-4">
             <button
               id="memory-stage"
               type="button"
               aria-expanded="false"
               aria-controls="film-strip"
-              class="group relative h-[42rem] w-full overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-5 text-slate-900 shadow-[0_24px_48px_rgba(8,14,24,0.16)] transition duration-300 hover:-translate-y-1"
+              class="memory-stage group relative h-[42rem] w-full overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-5 text-slate-900 shadow-[0_24px_48px_rgba(8,14,24,0.16)] transition duration-300 hover:-translate-y-1"
             >
               <span class="pointer-events-none absolute inset-5 rounded-[1.5rem] border border-dashed border-slate-900/15"></span>
               <span class="absolute left-1/2 top-5 -translate-x-1/2 rounded-full border border-slate-900/12 bg-white/95 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0f1a2b] transition duration-300 group-hover:-translate-y-1 group-hover:opacity-0" id="memory-prompt">Toca aqui</span>
